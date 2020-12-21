@@ -14,6 +14,11 @@
         <module>user-service</module>
         <module>docker-spring-web</module>
         <module>demo-for-kafka</module>
+        <module>springsecurity101-cloud-oauth2-client</module>
+        <module>springsecurity101-cloud-oauth2-server</module>
+        <module>springsecurity101-cloud-oauth2-userservice</module>
     </modules>
+
+
 
 </project>
