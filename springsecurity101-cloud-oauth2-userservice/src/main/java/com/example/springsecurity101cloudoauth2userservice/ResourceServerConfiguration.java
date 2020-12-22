@@ -18,33 +18,18 @@ import org.springframework.util.FileCopyUtils;
 import java.io.IOException;
 
 @Configuration
-@EnableResourceServer //启用资源服务器
-@EnableGlobalMethodSecurity(prePostEnabled = true) //启用方法注解方式来进行权限控制
+@EnableResourceServer
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
-    /**
-     * 声明了资源服务器的ID是userservice，声明了资源服务器的TokenStore是JWT
-     * @param resources
-     * @throws Exception
-     */
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources.resourceId("userservice").tokenStore(tokenStore());
     }
-
-    /**
-     * 配置TokenStore
-     * @return
-     */
     @Bean
     public TokenStore tokenStore() {
         return new JwtTokenStore(jwtAccessTokenConverter());
     }
-
-    /**
-     * 配置公钥
-     * @return
-     */
     @Bean
     protected JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
@@ -59,11 +44,6 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         return converter;
     }
 
-    /**
-     * 配置了除了/user路径之外的请求可以匿名访问
-     * @param http
-     * @throws Exception
-     */
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
