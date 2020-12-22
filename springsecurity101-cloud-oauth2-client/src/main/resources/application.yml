@@ -6,7 +6,7 @@ security:
   oauth2:
     client:
       clientId: userservice3
-      clientSecret: 1234
+      clientSecret: 9012
       accessTokenUri: http://localhost:9080/oauth/token
       userAuthorizationUri: http://localhost:9080/oauth/authorize
       scope: FOO
