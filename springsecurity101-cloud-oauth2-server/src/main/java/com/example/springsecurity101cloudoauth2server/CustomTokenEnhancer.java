@@ -20,6 +20,7 @@ public class CustomTokenEnhancer implements TokenEnhancer {
             //把用户标识嵌入JWT Token中去(Key是userDetails)
             Map<String, Object> additionalInfo = new HashMap<>();
             additionalInfo.put("userDetails", principal);
+            additionalInfo.put("demo", "some");
             ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
         }
         return accessToken;
