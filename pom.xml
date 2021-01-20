@@ -17,6 +17,8 @@
         <module>springsecurity101-cloud-oauth2-client</module>
         <module>springsecurity101-cloud-oauth2-server</module>
         <module>springsecurity101-cloud-oauth2-userservice</module>
+        <module>spring-gateway</module>
+        <module>springboot-redis-use</module>
     </modules>
 
 

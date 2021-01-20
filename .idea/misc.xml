@@ -11,6 +11,8 @@
         <option value="$PROJECT_DIR$/springsecurity101-cloud-oauth2-client/pom.xml" />
         <option value="$PROJECT_DIR$/springsecurity101-cloud-oauth2-server/pom.xml" />
         <option value="$PROJECT_DIR$/springsecurity101-cloud-oauth2-userservice/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-redis-use/pom.xml" />
       </list>
     </option>
   </component>

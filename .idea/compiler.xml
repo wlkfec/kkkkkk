@@ -10,6 +10,8 @@
         <module name="docker-spring-web" />
         <module name="springsecurity101-cloud-oauth2-client" />
         <module name="springsecurity101-cloud-oauth2-userservice" />
+        <module name="springboot-redis-use" />
+        <module name="spring-gateway" />
         <module name="demo-for-kafka" />
         <module name="user-service" />
         <module name="springsecurity101-cloud-oauth2-server" />
@@ -22,6 +24,8 @@
       <module name="demo-for-kafka" options="-parameters" />
       <module name="docker-spring-web" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
+      <module name="spring-gateway" options="-parameters" />
+      <module name="springboot-redis-use" options="-parameters" />
       <module name="springsecurity101-cloud-oauth2-client" options="-parameters" />
       <module name="springsecurity101-cloud-oauth2-server" options="-parameters" />
       <module name="springsecurity101-cloud-oauth2-userservice" options="-parameters" />

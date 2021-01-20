@@ -4,6 +4,8 @@
     <file url="file://$PROJECT_DIR$/demo-for-kafka/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/docker-spring-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eureka-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot-redis-use/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/springsecurity101-cloud-oauth2-client/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/springsecurity101-cloud-oauth2-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/springsecurity101-cloud-oauth2-userservice/src/main/java" charset="UTF-8" />

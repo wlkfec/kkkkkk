@@ -1,6 +1,7 @@
 package com.example.springsecurity101cloudoauth2server;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
@@ -10,6 +11,7 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 public class CustomTokenEnhancer implements TokenEnhancer {
 
     @Override

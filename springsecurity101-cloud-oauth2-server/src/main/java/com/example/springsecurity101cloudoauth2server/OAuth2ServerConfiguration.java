@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -69,12 +71,26 @@ public class OAuth2ServerConfiguration extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), jwtTokenEnhancer()));
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer() , jwtTokenEnhancer()));//
 
-        endpoints.approvalStore(approvalStore())
+//        endpoints.approvalStore(approvalStore())
+//                .authorizationCodeServices(authorizationCodeServices())
+//                .tokenStore(tokenStore())
+//                .tokenEnhancer(tokenEnhancerChain)
+//                .authenticationManager(authenticationManager);
+
+        endpoints
+                // 授权信息的存储
+                .approvalStore(approvalStore())
+                // 存储授权码等信息的数据源
                 .authorizationCodeServices(authorizationCodeServices())
+
+                // token的存储方式
                 .tokenStore(tokenStore())
+
+                // token 增强器
                 .tokenEnhancer(tokenEnhancerChain)
+
                 .authenticationManager(authenticationManager);
     }
 
@@ -82,12 +98,15 @@ public class OAuth2ServerConfiguration extends AuthorizationServerConfigurerAdap
     public TokenEnhancer tokenEnhancer() {
         return new CustomTokenEnhancer();
     }
+
     @Bean
     protected JwtAccessTokenConverter jwtTokenEnhancer() {
         KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("mytest.jks"),
                 "mypass".toCharArray());
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setKeyPair(keyStoreKeyFactory.getKeyPair("mytest"));
+        // 测试 - 配置其详细的安全holder容器对象
+        SecurityContextHolder.setStrategyName("");
         return converter;
     }
 
@@ -95,6 +114,12 @@ public class OAuth2ServerConfiguration extends AuthorizationServerConfigurerAdap
     public TokenStore tokenStore() {
         return new JwtTokenStore(jwtTokenEnhancer());
     }
+    @Autowired
+    private RedisConnectionFactory redisConnectionFactory;
+//    @Bean
+//    public TokenStore tokenStore() {
+//        return new RedisTokenStore(redisConnectionFactory);
+//    }
 
     @Bean
     public JdbcApprovalStore approvalStore() {

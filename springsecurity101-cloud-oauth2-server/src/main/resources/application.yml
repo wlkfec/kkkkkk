@@ -5,6 +5,29 @@ spring:
   application:
     name: oauth2-server
   datasource:
-    url: jdbc:mysql://localhost:3306/oauth?useSSL=false
+    url: jdbc:mysql://192.168.5.184:3306/oauth?useSSL=false
     username: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+    password: Unisound@123
+  redis:
+    host: 192.168.3.204
+    port: 63790
+    password: unisound@123
+    database: 15
+    timeout: 5000ms
+    lettuce:
+      pool:
+        max-active: 18
+        max-idle: 8
+        max-wait: 1s
+        min-idle: 8
+  cloud:
+    gateway:
+      routes:
+        - id: method_route
+          uri: http://www.baidu.com/
+          predicates:
+            - Path=/xxxx
+            - Method=GET,POST
+          filters:
+            - StripPrefix=1

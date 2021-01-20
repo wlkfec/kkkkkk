@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("user")
 public class UserController {
@@ -25,7 +27,7 @@ public class UserController {
         return authentication.getName();
     }
 
-    @PreAuthorize("hasAuthority('READ') or hasAuthority('WRITE')")
+    @PreAuthorize("hasAuthority('a5')")
     @GetMapping
     public OAuth2Authentication read(OAuth2Authentication authentication) {
         return authentication;
@@ -33,7 +35,8 @@ public class UserController {
 
     @PreAuthorize("hasAuthority('WRITE')")
     @PostMapping
-    public Object write(OAuth2Authentication authentication) {
+    public Object write(OAuth2Authentication authentication, HttpServletRequest request) {
+        request.getRemoteUser();
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
         OAuth2AccessToken accessToken = tokenStore.readAccessToken(details.getTokenValue());
         return accessToken.getAdditionalInformation().getOrDefault("userDetails", null);
